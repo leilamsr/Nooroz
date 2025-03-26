@@ -19,7 +19,7 @@ public class Database {
                 return e;
             }
         }
-        throw new EntityNotFoundException("پیدا نشد!");
+        throw new EntityNotFoundException();
     }
 
     public void delete(int id) throws EntityNotFoundException {
@@ -29,7 +29,7 @@ public class Database {
                 return;
             }
         }
-        throw new EntityNotFoundException("پیدا نشد!");
+        throw new EntityNotFoundException();
     }
 
     public void update(Entity e) throws EntityNotFoundException {
@@ -39,6 +39,6 @@ public class Database {
                 return;
             }
         }
-        throw new EntityNotFoundException("پیدا نشد!");
+        throw new EntityNotFoundException();
     }
 }
