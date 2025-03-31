@@ -9,14 +9,14 @@ public class Database {
 
     }
 
-    public static void add(Entity e) {
-        entities.add(e);
+    public static void add(Entity entity) {
+        entities.add(entity.copy());
     }
 
     public static Entity get(int id) throws EntityNotFoundException {
-        for (Entity e : entities) {
-            if (e.id == id) {
-                return e;
+        for (Entity entity : entities) {
+            if (entity.id == id) {
+                return entity.copy();
             }
         }
         throw new EntityNotFoundException();
@@ -32,10 +32,10 @@ public class Database {
         throw new EntityNotFoundException();
     }
 
-    public static void update(Entity e) throws EntityNotFoundException {
+    public static void update(Entity entity) throws EntityNotFoundException {
         for (int i = 0; i < entities.size(); i++) {
-            if (entities.get(i).id == e.id) {
-                entities.set(i, e);
+            if (entities.get(i).id == entity.id) {
+                entities.set(i, entity.copy());
                 return;
             }
         }
