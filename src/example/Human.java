@@ -3,11 +3,15 @@ package example;
 import db.Entity;
 
 public class Human extends Entity {
-    public String name;
-    public int age;
+    public static String name;
+    public static int age;
 
     public Human(String name) {
         this.name = name;
+    }
+
+    public Human(int age) {
+        this.age = age;
     }
 
     @Override
