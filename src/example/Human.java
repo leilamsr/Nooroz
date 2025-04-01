@@ -5,6 +5,7 @@ import db.Entity;
 public class Human extends Entity {
     public static String name;
     public static int age;
+    public static final int HUMAN_ENTITY_CODE = 14;
 
     public Human(String name) {
         this.name = name;
@@ -21,5 +22,10 @@ public class Human extends Entity {
         copyHuman.age = age;
 
         return copyHuman;
+    }
+
+    @Override
+    public int getEntityCode() {
+        return HUMAN_ENTITY_CODE;
     }
 }
