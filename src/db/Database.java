@@ -1,6 +1,7 @@
 package db;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Database {
@@ -13,6 +14,12 @@ public class Database {
 
     public static void add(Entity entity) {
         validataEntity(entity);
+
+        if (entity instanceof Trackable trackable) {
+            Date now = new Date();
+            trackable.setCreationDate(now);
+            trackable.setLastModificationDate(now);
+        }
         entities.add(entity.copy());
     }
 
@@ -39,6 +46,10 @@ public class Database {
         validataEntity(entity);
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i).id == entity.id) {
+                if (entity instanceof Trackable trackable) {
+                    Date now = new Date();
+                    trackable.setLastModificationDate(now);
+                }
                 entities.set(i, entity.copy());
                 return;
             }
