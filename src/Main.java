@@ -1,17 +1,35 @@
 import db.Database;
-import example.Human;
-import example.HumanValidator;
+import example.Document;
 import exception.InvalidEntityException;
 
 public class Main {
     public static void main(String[] args) throws InvalidEntityException {
-        Database.registerValidator(Human.HUMAN_ENTITY_CODE, new HumanValidator());
+        Document doc = new Document("Eid Eid Eid");
 
-        Human ali = new Human("Ali", -10);
+        Database.add(doc);
+
+        System.out.println("Document added");
+
+        System.out.println("id: " + doc.id);
+        System.out.println("content: " + doc.getContent());
+        System.out.println("creation date: " + doc.getCreationDate());
+        System.out.println("last modification date: " + doc.getLastModificationDate());
+        System.out.println();
+
         try {
-            Database.add(ali);
-        } catch (InvalidEntityException e) {
-            System.err.println("خطا در ثبت اطلاعات: " + e.getMessage());
+            Thread.sleep(30_000);
+        } catch (InterruptedException e) {
+            System.out.println("Sleep interrupted!");
         }
+
+        doc.content = "This is the new content";
+
+        Database.update(doc);
+
+        System.out.println("Document updated");
+        System.out.println("id: " + doc.id);
+        System.out.println("content: " + doc.content);
+        System.out.println("creation date: " + doc.getCreationDate());
+        System.out.println("last modification date: " + doc.getLastModificationDate());
     }
 }

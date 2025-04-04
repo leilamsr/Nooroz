@@ -8,7 +8,7 @@ import java.util.Date;
 public class Document extends Entity implements Trackable {
     private Date CreationDate;
     private Date LastModificationDate;
-    private String content;
+    public String content;
 
     public Document(String content) {
         this.content = content;
