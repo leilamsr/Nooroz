@@ -15,7 +15,8 @@ public class Database {
     public static void add(Entity entity) {
         validataEntity(entity);
 
-        if (entity instanceof Trackable trackable) {
+        if (entity instanceof Trackable) {
+            Trackable trackable = (Trackable) entity;
             Date now = new Date();
             trackable.setCreationDate(now);
             trackable.setLastModificationDate(now);
@@ -46,7 +47,8 @@ public class Database {
         validataEntity(entity);
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i).id == entity.id) {
-                if (entity instanceof Trackable trackable) {
+                if (entity instanceof Trackable) {
+                    Trackable trackable = (Trackable) entity;
                     Date now = new Date();
                     trackable.setLastModificationDate(now);
                 }
