@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Database {
     private static ArrayList<Entity> entities = new ArrayList<>();
     private static HashMap<Integer, Validator> validators = new HashMap<>();
+    private static int currentId = 1;
 
     public Database() {
 
@@ -14,6 +15,8 @@ public class Database {
 
     public static void add(Entity entity) {
         validataEntity(entity);
+
+        entity.id = currentId++;
 
         if (entity instanceof Trackable) {
             Trackable trackable = (Trackable) entity;
@@ -67,7 +70,7 @@ public class Database {
     }
 
     public static void validataEntity(Entity entity) {
-        Validator validator = validators.get(entity.id);
+        Validator validator = validators.get(entity.getEntityCode());
         if (validator == null) {
             throw new EntityNotFoundException();
         }

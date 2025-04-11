@@ -11,11 +11,13 @@ public class HumanValidator implements Validator {
             throw new InvalidEntityException("نوع ورودی اشتباه است!");
         }
 
-        if (Human.age < 0) {
+        Human human = (Human) entity;
+
+        if (human.age < 0) {
             throw new InvalidEntityException("سن اشتباه وارد شده است!");
         }
 
-        if (Human.name == null) {
+        if (human.name == null) {
             throw new InvalidEntityException("نام خود را وارد کنید!");
         }
     }
