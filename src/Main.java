@@ -1,52 +1,36 @@
-import db.Database;
-import example.Document;
-import db.Validator;
-import exception.InvalidEntityException;
-import db.Entity;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws InvalidEntityException {
-        // ثبت Validator برای Document به طور مستقیم
-        Database.registerValidator(0, new Validator() {
-            @Override
-            public void validate(Entity entity) throws InvalidEntityException {
-                if (!(entity instanceof Document)) {
-                    throw new InvalidEntityException("نوع ورودی اشتباه است!");
-                }
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
 
-                Document document = (Document) entity;
+        while (true) {
+            System.out.println("Enter command (add task, exit):");
+            String command = scn.nextLine().trim();
 
-                if (document.getContent() == null || document.getContent().isEmpty()) {
-                    throw new InvalidEntityException("محتوا نمی‌تواند خالی باشد!");
-                }
+            if (command.equals("exit")) {
+                System.out.println("Goodbye!");
+                break;
             }
-        });
 
-        Document doc = new Document("Eid Eid Eid");
+            if (command.equals("add task")) {
+                System.out.print("Enter Task Title: ");
+                String title = scn.nextLine();
 
-        Database.add(doc);
+                System.out.print("Enter Task Description: ");
+                String description = scn.nextLine();
 
-        System.out.println("Document added");
-        System.out.println("id: " + doc.id);
-        System.out.println("content: " + doc.getContent());
-        System.out.println("creation date: " + doc.getCreationDate());
-        System.out.println("last modification date: " + doc.getLastModificationDate());
-        System.out.println();
+                System.out.print("Enter Task Due Date (yyyy-mm-dd): ");
+                String dueDate = scn.nextLine();
 
-        try {
-            Thread.sleep(30_000);
-        } catch (InterruptedException e) {
-            System.out.println("Sleep interrupted!");
+                System.out.println("Task saved successfully.");
+                System.out.println("Title: " + title);
+                System.out.println("Description: " + description);
+                System.out.println("Due Date: " + dueDate);
+            }
+            else {
+                System.out.println("Unknown command.");
+            }
         }
-
-        doc.content = "This is the new content";
-
-        Database.update(doc);
-
-        System.out.println("Document updated");
-        System.out.println("id: " + doc.id);
-        System.out.println("content: " + doc.content);
-        System.out.println("creation date: " + doc.getCreationDate());
-        System.out.println("last modification date: " + doc.getLastModificationDate());
     }
 }
