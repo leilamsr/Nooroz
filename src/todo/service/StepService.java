@@ -11,7 +11,7 @@ public class StepService {
     private static Map<Integer, Step> stepData= new HashMap<>();
 
     public static void saveStep(int taskRef, String title) {
-        Step step = new Step(title, Step.Status.NotStarted, taskRef);
+        Step step = new Step(title, taskRef);
         stepData.put(step.hashCode(), step);
     }
 

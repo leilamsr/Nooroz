@@ -8,9 +8,9 @@ public class Step extends Entity {
     private Status status;
     private int taskRef;
 
-    public Step(String title, Status status, int taskRef) {
+    public Step(String title, int taskRef) {
         this.title = title;
-        this.status = status;
+        setStatus(Status.NotStarted);
         this.taskRef = taskRef;
     }
 
@@ -40,7 +40,7 @@ public class Step extends Entity {
 
     @Override
     public Entity copy() {
-        return new Step(this.title, this.status, this.taskRef);
+        return new Step(this.title, this.taskRef);
     }
 
     @Override
